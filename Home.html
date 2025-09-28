@@ -75,27 +75,6 @@
       position: relative;
     }
 
-    /* Ad Container Styles */
-    .ad-container {
-      margin: 20px 0;
-      padding: 15px;
-      background: #f8f9fa;
-      border-radius: 12px;
-      border: 2px solid #e9ecef;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 120px;
-    }
-
-    .ad-slot {
-      display: none;
-    }
-
-    .ad-slot.active {
-      display: block;
-    }
-
     /* Header Section */
     .header {
       margin-bottom: 30px;
@@ -118,6 +97,27 @@
       font-size: 16px;
       max-width: 600px;
       margin: 0 auto;
+    }
+
+    /* Ad Container */
+    .ad-container {
+      margin: 20px auto;
+      max-width: 728px;
+      text-align: center;
+      min-height: 90px; /* Minimum height to prevent layout shift */
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #f8f9fa;
+    }
+
+    .ad-container iframe {
+      display: none; /* Hidden by default */
+    }
+
+    .ad-container .active {
+      display: block; /* Only show the active ad */
     }
 
     /* Navigation Tabs */
@@ -461,10 +461,12 @@
 
     .btn-copy {
       background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
     }
 
     .btn-delete {
       background: linear-gradient(135deg, #dc3545, #c82333);
+      color: white;
     }
 
     .empty-state {
@@ -591,9 +593,9 @@
       .saved-title {
         font-size: 18px;
       }
-
+      
       .ad-container {
-        margin: 15px 0;
+        max-width: 100%;
         padding: 10px;
       }
     }
@@ -619,6 +621,11 @@
       
       .password-text {
         font-size: 14px;
+      }
+      
+      .ad-container {
+        max-width: 100%;
+        height: auto;
       }
     }
 
@@ -654,15 +661,11 @@
         height: auto;
       }
       
-      .tabs {
+      .tabs, .ad-container {
         display: none;
       }
       
       button {
-        display: none;
-      }
-
-      .ad-container {
         display: none;
       }
     }
@@ -679,43 +682,41 @@
       <p>Generate secure passwords with custom options. Include uppercase, lowercase, numbers, and symbols.</p>
     </header>
 
-    <!-- First Ad Container (After Header) -->
-    <div class="ad-container">
-      <div class="ad-slot" id="ad1">
+    <!-- Ad Container -->
+    <div class="ad-container" id="adContainer">
+      <div id="ad1" class="ad-slot">
         <script type="text/javascript">
-        atOptions = {
-        'key' : '63718988f07bc6d276f3c6a441757cae',
-        'format' : 'iframe',
-        'height' : 90,
-        'width' : 728,
-        'params' : {}
-        };
+          atOptions = {
+            'key': '63718988f07bc6d276f3c6a441757cae',
+            'format': 'iframe',
+            'height': 90,
+            'width': 728,
+            'params': {}
+          };
         </script>
         <script type="text/javascript" src="//www.highperformanceformat.com/63718988f07bc6d276f3c6a441757cae/invoke.js"></script>
       </div>
-      
-      <div class="ad-slot" id="ad2">
+      <div id="ad2" class="ad-slot">
         <script type="text/javascript">
-        atOptions = {
-        'key' : 'c620af328467e6de19dc04af696ee0fb',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-        };
+          atOptions = {
+            'key': 'c620af328467e6de19dc04af696ee0fb',
+            'format': 'iframe',
+            'height': 250,
+            'width': 300,
+            'params': {}
+          };
         </script>
         <script type="text/javascript" src="//www.highperformanceformat.com/c620af328467e6de19dc04af696ee0fb/invoke.js"></script>
       </div>
-      
-      <div class="ad-slot" id="ad3">
+      <div id="ad3" class="ad-slot">
         <script type="text/javascript">
-        atOptions = {
-        'key' : '78ade24182729fceea8e45203dad915b',
-        'format' : 'iframe',
-        'height' : 50,
-        'width' : 320,
-        'params' : {}
-        };
+          atOptions = {
+            'key': '78ade24182729fceea8e45203dad915b',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
+          };
         </script>
         <script type="text/javascript" src="//www.highperformanceformat.com/78ade24182729fceea8e45203dad915b/invoke.js"></script>
       </div>
@@ -796,48 +797,6 @@
           <div class="strength-fill" id="strengthFill"></div>
         </div>
       </div>
-
-      <!-- Second Ad Container (After Strength Meter) -->
-      <div class="ad-container">
-        <div class="ad-slot" id="ad4">
-          <script type="text/javascript">
-          atOptions = {
-          'key' : '63718988f07bc6d276f3c6a441757cae',
-          'format' : 'iframe',
-          'height' : 90,
-          'width' : 728,
-          'params' : {}
-          };
-          </script>
-          <script type="text/javascript" src="//www.highperformanceformat.com/63718988f07bc6d276f3c6a441757cae/invoke.js"></script>
-        </div>
-        
-        <div class="ad-slot" id="ad5">
-          <script type="text/javascript">
-          atOptions = {
-          'key' : 'c620af328467e6de19dc04af696ee0fb',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-          };
-          </script>
-          <script type="text/javascript" src="//www.highperformanceformat.com/c620af328467e6de19dc04af696ee0fb/invoke.js"></script>
-        </div>
-        
-        <div class="ad-slot" id="ad6">
-          <script type="text/javascript">
-          atOptions = {
-          'key' : '78ade24182729fceea8e45203dad915b',
-          'format' : 'iframe',
-          'height' : 50,
-          'width' : 320,
-          'params' : {}
-          };
-          </script>
-          <script type="text/javascript" src="//www.highperformanceformat.com/78ade24182729fceea8e45203dad915b/invoke.js"></script>
-        </div>
-      </div>
       
       <section class="saved-passwords">
         <h3 class="saved-title">Saved Passwords</h3>
@@ -862,79 +821,14 @@
   </div>
 
   <script>
-    // Ad Rotation System
-    class AdRotation {
-      constructor() {
-        this.adGroups = [
-          ['ad1', 'ad2', 'ad3'],  // First ad container
-          ['ad4', 'ad5', 'ad6']   // Second ad container
-        ];
-        this.currentIndices = [0, 0]; // Track current ad for each group
-        this.rotationInterval = 30000; // 30 seconds
-        
-        this.init();
-      }
-
-      init() {
-        // Show initial ads
-        this.showAds();
-        
-        // Start rotation
-        setInterval(() => {
-          this.rotateAds();
-        }, this.rotationInterval);
-      }
-
-      showAds() {
-        this.adGroups.forEach((group, groupIndex) => {
-          const currentAdIndex = this.currentIndices[groupIndex];
-          group.forEach((adId, index) => {
-            const adElement = document.getElementById(adId);
-            if (adElement) {
-              if (index === currentAdIndex) {
-                adElement.classList.add('active');
-              } else {
-                adElement.classList.remove('active');
-              }
-            }
-          });
-        });
-      }
-
-      rotateAds() {
-        this.adGroups.forEach((group, groupIndex) => {
-          this.currentIndices[groupIndex] = (this.currentIndices[groupIndex] + 1) % group.length;
-        });
-        this.showAds();
-      }
-    }
-
-    // Password Generator Class
     class PasswordGenerator {
       constructor() {
-        this.savedPasswords = this.getSavedPasswords();
-        this.currentPassword = '';
+        this.savedPasswords = JSON.parse(localStorage.getItem('savedPasswords') || '[]');
         this.initializeElements();
         this.bindEvents();
         this.generatePassword();
         this.renderSavedPasswords();
-        this.adRotation = new AdRotation();
-      }
-
-      getSavedPasswords() {
-        try {
-          return JSON.parse(localStorage.getItem('savedPasswords') || '[]');
-        } catch (e) {
-          return [];
-        }
-      }
-
-      savePasswords() {
-        try {
-          localStorage.setItem('savedPasswords', JSON.stringify(this.savedPasswords));
-        } catch (e) {
-          this.showToast('Error saving passwords', 'error');
-        }
+        this.initializeAds(); // Initialize ads
       }
 
       initializeElements() {
@@ -951,12 +845,14 @@
         this.passwordOutput = document.getElementById('passwordOutput');
         this.strengthLabel = document.getElementById('strengthLabel');
         this.strengthFill = document.getElementById('strengthFill');
+        this.toast = document.getElementById('toast');
         this.saveModal = document.getElementById('saveModal');
-        this.passwordLabelInput = document.getElementById('passwordLabel');
+        this.passwordLabel = document.getElementById('passwordLabel');
         this.cancelSaveBtn = document.getElementById('cancelSaveBtn');
         this.confirmSaveBtn = document.getElementById('confirmSaveBtn');
         this.savedPasswordsList = document.getElementById('savedPasswordsList');
-        this.toast = document.getElementById('toast');
+        this.adContainer = document.getElementById('adContainer');
+        this.adSlots = this.adContainer.querySelectorAll('.ad-slot');
       }
 
       bindEvents() {
@@ -965,218 +861,137 @@
           this.generatePassword();
         });
 
-        this.uppercaseCheckbox.addEventListener('change', () => this.generatePassword());
-        this.lowercaseCheckbox.addEventListener('change', () => this.generatePassword());
-        this.numbersCheckbox.addEventListener('change', () => this.generatePassword());
-        this.symbolsCheckbox.addEventListener('change', () => this.generatePassword());
+        [this.uppercaseCheckbox, this.lowercaseCheckbox, this.numbersCheckbox, this.symbolsCheckbox].forEach(checkbox => {
+          checkbox.addEventListener('change', () => this.generatePassword());
+        });
 
         this.generateBtn.addEventListener('click', () => this.generatePassword());
-        this.copyBtn.addEventListener('click', () => this.copyPassword());
+        this.copyBtn.addEventListener('click', () => this.copyToClipboard());
         this.saveBtn.addEventListener('click', () => this.openSaveModal());
         this.copyAllBtn.addEventListener('click', () => this.copyAllPasswords());
         this.cancelSaveBtn.addEventListener('click', () => this.closeSaveModal());
         this.confirmSaveBtn.addEventListener('click', () => this.savePassword());
+
+        this.savedPasswordsList.addEventListener('click', (e) => {
+          if (e.target.classList.contains('btn-copy')) {
+            this.copyToClipboard(e.target.dataset.password);
+          }
+          if (e.target.classList.contains('btn-delete')) {
+            this.deleteSavedPassword(e.target.dataset.id);
+          }
+        });
+      }
+
+      initializeAds() {
+        // Randomly select one ad to display
+        const randomIndex = Math.floor(Math.random() * this.adSlots.length);
+        this.adSlots.forEach((slot, index) => {
+          if (index === randomIndex) {
+            slot.classList.add('active');
+          } else {
+            slot.classList.remove('active');
+          }
+        });
       }
 
       generatePassword() {
-        const length = parseInt(this.lengthSlider.value);
-        const includeUppercase = this.uppercaseCheckbox.checked;
-        const includeLowercase = this.lowercaseCheckbox.checked;
-        const includeNumbers = this.numbersCheckbox.checked;
-        const includeSymbols = this.symbolsCheckbox.checked;
-
-        if (!includeUppercase && !includeLowercase && !includeNumbers && !includeSymbols) {
-          this.showToast('Please select at least one character type', 'error');
-          this.passwordOutput.textContent = 'Select at least one option';
-          this.updateStrengthMeter(0);
-          return;
-        }
-
-        const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-        const numbers = '0123456789';
-        const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+        const length = this.lengthSlider.value;
+        const uppercase = this.uppercaseCheckbox.checked;
+        const lowercase = this.lowercaseCheckbox.checked;
+        const numbers = this.numbersCheckbox.checked;
+        const symbols = this.symbolsCheckbox.checked;
 
         let chars = '';
-        if (includeUppercase) chars += uppercase;
-        if (includeLowercase) chars += lowercase;
-        if (includeNumbers) chars += numbers;
-        if (includeSymbols) chars += symbols;
+        if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+        if (numbers) chars += '0123456789';
+        if (symbols) chars += '!@#$%^&*()_+~`|}{[]:;?><,./-=';
 
         let password = '';
         for (let i = 0; i < length; i++) {
-          const randomIndex = Math.floor(Math.random() * chars.length);
-          password += chars[randomIndex];
+          password += chars.charAt(Math.floor(Math.random() * chars.length));
         }
 
-        this.currentPassword = password;
         this.passwordOutput.textContent = password;
-        this.updateStrengthMeter(this.calculateStrength(password));
+        const strength = this.calculateStrength(password);
+        this.updateStrengthMeter(strength);
       }
 
       calculateStrength(password) {
-        let score = 0;
-        const length = password.length;
-
-        // Length scoring
-        if (length >= 8) score += 25;
-        if (length >= 12) score += 25;
-
-        // Character type scoring
-        if (/[A-Z]/.test(password)) score += 15;
-        if (/[a-z]/.test(password)) score += 15;
-        if (/[0-9]/.test(password)) score += 15;
-        if (/[^A-Za-z0-9]/.test(password)) score += 15;
-
-        // Additional complexity
-        if (length >= 16 && /[A-Z]/.test(password) && /[a-z]/.test(password) && /[0-9]/.test(password) && /[^A-Za-z0-9]/.test(password)) {
-          score += 10;
-        }
-
-        return Math.min(score, 100);
+        let strength = 0;
+        if (password.length > 12) strength += 2;
+        if (/[A-Z]/.test(password)) strength += 1;
+        if (/[a-z]/.test(password)) strength += 1;
+        if (/[0-9]/.test(password)) strength += 1;
+        if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+        return strength;
       }
 
-      updateStrengthMeter(score) {
-        let strengthText = 'Weak';
-        let strengthClass = 'strength-weak';
-
-        if (score >= 80) {
-          strengthText = 'Strong';
-          strengthClass = 'strength-strong';
-        } else if (score >= 60) {
-          strengthText = 'Good';
-          strengthClass = 'strength-good';
-        } else if (score >= 40) {
-          strengthText = 'Fair';
-          strengthClass = 'strength-fair';
-        }
-
-        this.strengthLabel.textContent = `Password Strength: ${strengthText}`;
-        this.strengthFill.style.width = `${score}%`;
-        this.strengthFill.className = `strength-fill ${strengthClass}`;
+      updateStrengthMeter(strength) {
+        const labels = ['Very Weak', 'Weak', 'Medium', 'Strong', 'Very Strong'];
+        this.strengthLabel.textContent = labels[strength] || 'Very Weak';
+        this.strengthFill.style.width = (strength * 20) + '%';
+        const classes = ['strength-weak', 'strength-weak', 'strength-fair', 'strength-good', 'strength-strong', 'strength-strong'];
+        this.strengthFill.className = 'strength-fill ' + classes[strength];
       }
 
-      copyPassword() {
-        if (!this.currentPassword) {
-          this.showToast('No password to copy', 'error');
-          return;
-        }
-
-        navigator.clipboard.writeText(this.currentPassword)
-          .then(() => this.showToast('Password copied to clipboard', 'success'))
-          .catch(() => this.showToast('Failed to copy password', 'error'));
-      }
-
-      copyAllPasswords() {
-        if (this.savedPasswords.length === 0) {
-          this.showToast('No saved passwords to copy', 'error');
-          return;
-        }
-
-        const allPasswords = this.savedPasswords
-          .map(p => `${p.label}: ${p.password}`)
-          .join('\n');
-
-        navigator.clipboard.writeText(allPasswords)
-          .then(() => this.showToast('All passwords copied to clipboard', 'success'))
-          .catch(() => this.showToast('Failed to copy passwords', 'error'));
+      copyToClipboard(password = this.passwordOutput.textContent) {
+        navigator.clipboard.writeText(password).then(() => {
+          this.showToast('Copied to clipboard!');
+        });
       }
 
       openSaveModal() {
-        if (!this.currentPassword) {
-          this.showToast('Generate a password first', 'error');
-          return;
-        }
         this.saveModal.classList.add('active');
-        this.passwordLabelInput.focus();
       }
 
       closeSaveModal() {
         this.saveModal.classList.remove('active');
-        this.passwordLabelInput.value = '';
       }
 
       savePassword() {
-        const label = this.passwordLabelInput.value.trim();
-        if (!label) {
-          this.showToast('Please enter a label', 'error');
-          return;
-        }
-
-        this.savedPasswords.push({
-          label,
-          password: this.currentPassword,
-          date: new Date().toLocaleString()
-        });
-
-        this.savePasswords();
+        const label = this.passwordLabel.value;
+        const password = this.passwordOutput.textContent;
+        this.savedPasswords.push({ label, password });
+        localStorage.setItem('savedPasswords', JSON.stringify(this.savedPasswords));
         this.renderSavedPasswords();
         this.closeSaveModal();
-        this.showToast('Password saved successfully', 'success');
-      }
-
-      deletePassword(index) {
-        this.savedPasswords.splice(index, 1);
-        this.savePasswords();
-        this.renderSavedPasswords();
-        this.showToast('Password deleted', 'success');
       }
 
       renderSavedPasswords() {
-        this.savedPasswordsList.innerHTML = '';
-        if (this.savedPasswords.length === 0) {
-          this.savedPasswordsList.innerHTML = '<div class="empty-state">No saved passwords yet.</div>';
-          return;
-        }
-
-        this.savedPasswords.forEach((item, index) => {
-          const passwordItem = document.createElement('div');
-          passwordItem.className = 'password-item';
-          passwordItem.innerHTML = `
+        this.savedPasswordsList.innerHTML = this.savedPasswords.map((p, index) => `
+          <div class="password-item">
             <div class="password-info">
-              <div class="password-value">${item.password}</div>
-              <div class="password-meta">${item.label} - ${item.date}</div>
+              <div class="password-value">${p.password}</div>
+              <div class="password-meta">${p.label}</div>
             </div>
             <div class="password-actions">
-              <button class="btn-small btn-copy" data-index="${index}">Copy</button>
-              <button class="btn-small btn-delete" data-index="${index}">Delete</button>
+              <button class="btn-small btn-copy" data-password="${p.password}">Copy</button>
+              <button class="btn-small btn-delete" data-id="${index}">Delete</button>
             </div>
-          `;
-          this.savedPasswordsList.appendChild(passwordItem);
-        });
-
-        // Add event listeners for copy and delete buttons
-        this.savedPasswordsList.querySelectorAll('.btn-copy').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const index = e.target.dataset.index;
-            const password = this.savedPasswords[index].password;
-            navigator.clipboard.writeText(password)
-              .then(() => this.showToast('Password copied to clipboard', 'success'))
-              .catch(() => this.showToast('Failed to copy password', 'error'));
-          });
-        });
-
-        this.savedPasswordsList.querySelectorAll('.btn-delete').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            const index = e.target.dataset.index;
-            this.deletePassword(index);
-          });
-        });
+          </div>
+        `).join('');
       }
 
-      showToast(message, type) {
+      deleteSavedPassword(id) {
+        this.savedPasswords.splice(id, 1);
+        localStorage.setItem('savedPasswords', JSON.stringify(this.savedPasswords));
+        this.renderSavedPasswords();
+      }
+
+      copyAllPasswords() {
+        const all = this.savedPasswords.map(p => p.password).join('\n');
+        this.copyToClipboard(all);
+      }
+
+      showToast(message) {
         this.toast.textContent = message;
-        this.toast.className = `toast show ${type}`;
-        setTimeout(() => {
-          this.toast.className = 'toast';
-        }, 3000);
+        this.toast.classList.add('show');
+        setTimeout(() => this.toast.classList.remove('show'), 3000);
       }
     }
 
-    // Initialize the password generator
-    document.addEventListener('DOMContentLoaded', () => {
-      new PasswordGenerator();
-    });
+    new PasswordGenerator();
   </script>
 </body>
 </html>
