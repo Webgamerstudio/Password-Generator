@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Tags for SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Generate secure passwords instantly. Customize length, character types, and strength. Free online password generator tool.">
@@ -9,24 +8,20 @@
   <meta name="author" content="QR Tools">
   <meta name="robots" content="index, follow">
   
-  <!-- Open Graph Tags for Social Media -->
   <meta property="og:title" content="Password Generator - Free Online Tool">
   <meta property="og:description" content="Generate secure passwords with custom options. Include uppercase, lowercase, numbers, and symbols.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://yoursite.com/password-generator">
   <meta property="og:image" content="https://yoursite.com/images/password-generator-preview.jpg">
   
-  <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Password Generator">
   <meta name="twitter:description" content="Generate secure passwords instantly">
   
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
   
   <title>Password Generator - Free Online Secure Password Tool</title>
   
-  <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -75,7 +70,6 @@
       position: relative;
     }
 
-    /* Header Section */
     .header {
       margin-bottom: 30px;
       padding: 20px 0;
@@ -99,28 +93,43 @@
       margin: 0 auto;
     }
 
-    /* Ad Container */
     .ad-container {
       margin: 20px auto;
       max-width: 728px;
       text-align: center;
-      min-height: 90px; /* Minimum height to prevent layout shift */
+      min-height: 90px;
       position: relative;
       overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       background: #f8f9fa;
+      display: none; /* Hidden by default until an ad loads */
     }
 
-    .ad-container iframe {
-      display: none; /* Hidden by default */
+    .ad-container.active {
+      display: block; /* Show when an ad is successfully loaded */
     }
 
-    .ad-container .active {
-      display: block; /* Only show the active ad */
+    .ad-container .ad-slot {
+      display: none;
     }
 
-    /* Navigation Tabs */
+    .ad-container .ad-slot.active {
+      display: block;
+    }
+
+    .ad-container .ad-fallback {
+      display: none;
+      color: #666;
+      font-size: 14px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .ad-container.no-ads .ad-fallback {
+      display: block;
+    }
+
     .tabs {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -166,13 +175,11 @@
       border-color: #667eea;
     }
 
-    /* Grid Layout for Tabs */
-    .tab:nth-child(1) { grid-column: 1; grid-row: 1; } /* Scanner */
-    .tab:nth-child(2) { grid-column: 2; grid-row: 1; } /* Generator */
-    .tab:nth-child(3) { grid-column: 1; grid-row: 2; } /* Upload */
-    .tab:nth-child(4) { grid-column: 2; grid-row: 2; } /* History */
+    .tab:nth-child(1) { grid-column: 1; grid-row: 1; }
+    .tab:nth-child(2) { grid-column: 2; grid-row: 1; }
+    .tab:nth-child(3) { grid-column: 1; grid-row: 2; }
+    .tab:nth-child(4) { grid-column: 2; grid-row: 2; }
 
-    /* Tab Content */
     .tab-content {
       display: none;
       animation: fadeIn 0.6s ease;
@@ -183,17 +190,10 @@
     }
 
     @keyframes fadeIn {
-      from { 
-        opacity: 0; 
-        transform: translateY(20px); 
-      }
-      to { 
-        opacity: 1; 
-        transform: translateY(0); 
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Section Titles */
     .section-title {
       margin-bottom: 25px;
       color: #333;
@@ -205,7 +205,6 @@
       gap: 10px;
     }
 
-    /* Password Display */
     .password-display {
       margin: 25px auto;
       padding: 25px;
@@ -233,7 +232,6 @@
       color: #666;
     }
 
-    /* Controls Section */
     .controls-section {
       max-width: 600px;
       margin: 0 auto;
@@ -318,21 +316,12 @@
       border-color: #667eea;
     }
 
-    /* Action Buttons */
     .action-buttons {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
       justify-content: center;
       margin-top: 25px;
-    }
-
-    .action-buttons button {
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      border-radius: 8px;
-      transition: all 0.3s ease;
     }
 
     button {
@@ -361,7 +350,6 @@
       background: linear-gradient(135deg, #007bff, #0056b3);
     }
 
-    /* Strength Meter */
     .strength-meter {
       margin-top: 25px;
       padding: 20px;
@@ -395,7 +383,6 @@
     .strength-good { background: #28a745; }
     .strength-strong { background: #007bff; }
 
-    /* Saved Passwords */
     .saved-passwords {
       margin-top: 40px;
       padding: 30px 20px;
@@ -476,7 +463,6 @@
       padding: 20px;
     }
 
-    /* Save Modal */
     .save-modal {
       position: fixed;
       top: 0;
@@ -521,7 +507,6 @@
       gap: 10px;
     }
 
-    /* Toast */
     .toast {
       position: fixed;
       bottom: 30px;
@@ -547,89 +532,29 @@
       background: linear-gradient(135deg, #dc3545, #c82333);
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
-      .container {
-        padding: 15px;
-      }
-      
-      .header h1 {
-        font-size: 24px;
-      }
-      
-      .tabs {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      
-      .tab {
-        padding: 10px 14px;
-        font-size: 13px;
-      }
-      
-      .checkbox-group {
-        grid-template-columns: 1fr;
-      }
-      
-      .action-buttons {
-        flex-direction: column;
-      }
-      
-      .password-item {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      
-      .password-actions {
-        width: 100%;
-        justify-content: flex-end;
-      }
-      
-      .section-title {
-        font-size: 20px;
-      }
-      
-      .saved-title {
-        font-size: 18px;
-      }
-      
-      .ad-container {
-        max-width: 100%;
-        padding: 10px;
-      }
+      .container { padding: 15px; }
+      .header h1 { font-size: 24px; }
+      .tabs { grid-template-columns: 1fr; gap: 10px; }
+      .tab { padding: 10px 14px; font-size: 13px; }
+      .checkbox-group { grid-template-columns: 1fr; }
+      .action-buttons { flex-direction: column; }
+      .password-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .password-actions { width: 100%; justify-content: flex-end; }
+      .section-title { font-size: 20px; }
+      .saved-title { font-size: 18px; }
+      .ad-container { max-width: 100%; padding: 10px; }
     }
 
     @media (max-width: 480px) {
-      .container {
-        padding: 10px;
-      }
-      
-      .header {
-        padding: 15px 0;
-      }
-      
-      .header h1 {
-        font-size: 20px;
-        flex-direction: column;
-        gap: 5px;
-      }
-      
-      .header p {
-        font-size: 14px;
-      }
-      
-      .password-text {
-        font-size: 14px;
-      }
-      
-      .ad-container {
-        max-width: 100%;
-        height: auto;
-      }
+      .container { padding: 10px; }
+      .header { padding: 15px 0; }
+      .header h1 { font-size: 20px; flex-direction: column; gap: 5px; }
+      .header p { font-size: 14px; }
+      .password-text { font-size: 14px; }
+      .ad-container { max-width: 100%; height: auto; }
     }
 
-    /* Accessibility Improvements */
     .sr-only {
       position: absolute;
       width: 1px;
@@ -642,7 +567,6 @@
       border: 0;
     }
 
-    /* Focus Styles */
     button:focus,
     input:focus,
     .tab:focus {
@@ -650,30 +574,16 @@
       outline-offset: 2px;
     }
 
-    /* Print Styles */
     @media print {
-      body {
-        background: white;
-      }
-      
-      .container {
-        box-shadow: none;
-        height: auto;
-      }
-      
-      .tabs, .ad-container {
-        display: none;
-      }
-      
-      button {
-        display: none;
-      }
+      body { background: white; }
+      .container { box-shadow: none; height: auto; }
+      .tabs, .ad-container { display: none; }
+      button { display: none; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Header Section -->
     <header class="header">
       <h1>
         <span>🔐</span>
@@ -682,10 +592,9 @@
       <p>Generate secure passwords with custom options. Include uppercase, lowercase, numbers, and symbols.</p>
     </header>
 
-    <!-- Ad Container -->
-    <div class="ad-container" id="adContainer">
+    <div class="ad-container" id="adContainer" role="region" aria-label="Advertisement">
       <div id="ad1" class="ad-slot">
-        <script type="text/javascript">
+        <script async type="text/javascript">
           atOptions = {
             'key': '63718988f07bc6d276f3c6a441757cae',
             'format': 'iframe',
@@ -694,10 +603,10 @@
             'params': {}
           };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/63718988f07bc6d276f3c6a441757cae/invoke.js"></script>
+        <script async type="text/javascript" src="//www.highperformanceformat.com/63718988f07bc6d276f3c6a441757cae/invoke.js"></script>
       </div>
       <div id="ad2" class="ad-slot">
-        <script type="text/javascript">
+        <script async type="text/javascript">
           atOptions = {
             'key': 'c620af328467e6de19dc04af696ee0fb',
             'format': 'iframe',
@@ -706,10 +615,10 @@
             'params': {}
           };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/c620af328467e6de19dc04af696ee0fb/invoke.js"></script>
+        <script async type="text/javascript" src="//www.highperformanceformat.com/c620af328467e6de19dc04af696ee0fb/invoke.js"></script>
       </div>
       <div id="ad3" class="ad-slot">
-        <script type="text/javascript">
+        <script async type="text/javascript">
           atOptions = {
             'key': '78ade24182729fceea8e45203dad915b',
             'format': 'iframe',
@@ -718,11 +627,11 @@
             'params': {}
           };
         </script>
-        <script type="text/javascript" src="//www.highperformanceformat.com/78ade24182729fceea8e45203dad915b/invoke.js"></script>
+        <script async type="text/javascript" src="//www.highperformanceformat.com/78ade24182729fceea8e45203dad915b/invoke.js"></script>
       </div>
+      <div class="ad-fallback">Advertisement not available</div>
     </div>
 
-    <!-- Navigation Tabs -->
     <nav class="tabs" role="navigation" aria-label="Main navigation">
       <a href="https://webgamerstudio.github.io/Advanced-QR-Code-Tools/Home.html" class="tab" role="button" aria-label="Camera Scanner">
         <span>📷</span>
@@ -742,7 +651,6 @@
       </a>
     </nav>
 
-    <!-- Password Generator Content -->
     <main id="password" class="tab-content active">
       <h2 class="section-title">
         <span>🔐</span>
@@ -755,7 +663,7 @@
       
       <div class="controls-section">
         <div class="control-group">
-          <label class="control-label">Length</label>
+          <label class="control-label" for="lengthSlider">Length</label>
           <div class="slider-container">
             <input type="range" class="slider" id="lengthSlider" min="4" max="32" value="12" aria-label="Password length slider">
             <div class="length-display" id="lengthDisplay">12</div>
@@ -786,9 +694,9 @@
       </div>
       
       <div class="action-buttons">
-        <button id="generateBtn">Generate</button>
-        <button class="btn-secondary" id="copyBtn">Copy</button>
-        <button class="btn-save" id="saveBtn">Save</button>
+        <button id="generateBtn" aria-label="Generate new password">Generate</button>
+        <button class="btn-secondary" id="copyBtn" aria-label="Copy generated password">Copy</button>
+        <button class="btn-save" id="saveBtn" aria-label="Save generated password">Save</button>
       </div>
       
       <div class="strength-meter">
@@ -800,19 +708,18 @@
       
       <section class="saved-passwords">
         <h3 class="saved-title">Saved Passwords</h3>
-        <button class="btn-copy-all" id="copyAllBtn">Copy All</button>
+        <button class="btn-copy-all" id="copyAllBtn" aria-label="Copy all saved passwords">Copy All</button>
         <div id="savedPasswordsList"></div>
       </section>
     </main>
 
-    <!-- Save Modal -->
     <div class="save-modal" id="saveModal">
       <div class="modal-content">
         <h3 class="modal-title">Save Password</h3>
         <input type="text" class="modal-input" id="passwordLabel" placeholder="Enter label (e.g., Email)" aria-label="Password label">
         <div class="modal-buttons">
-          <button class="btn-secondary" id="cancelSaveBtn">Cancel</button>
-          <button id="confirmSaveBtn">Save</button>
+          <button class="btn-secondary" id="cancelSaveBtn" aria-label="Cancel saving password">Cancel</button>
+          <button id="confirmSaveBtn" aria-label="Confirm saving password">Save</button>
         </div>
       </div>
     </div>
@@ -828,7 +735,7 @@
         this.bindEvents();
         this.generatePassword();
         this.renderSavedPasswords();
-        this.initializeAds(); // Initialize ads
+        this.initializeAds();
       }
 
       initializeElements() {
@@ -883,13 +790,41 @@
       }
 
       initializeAds() {
-        // Randomly select one ad to display
-        const randomIndex = Math.floor(Math.random() * this.adSlots.length);
+        const adSizes = [
+          { width: 728, height: 90 },
+          { width: 300, height: 250 },
+          { width: 320, height: 50 }
+        ];
+
+        let loaded = false;
         this.adSlots.forEach((slot, index) => {
-          if (index === randomIndex) {
-            slot.classList.add('active');
-          } else {
-            slot.classList.remove('active');
+          const iframe = slot.querySelector('iframe');
+          if (iframe) {
+            iframe.addEventListener('load', () => {
+              try {
+                const content = iframe.contentWindow.document.body.innerHTML;
+                if (content && !loaded) {
+                  slot.classList.add('active');
+                  this.adContainer.classList.add('active');
+                  this.adContainer.style.width = `${adSizes[index].width}px`;
+                  this.adContainer.style.height = `${adSizes[index].height}px`;
+                  loaded = true;
+                } else {
+                  slot.style.display = 'none';
+                }
+              } catch (e) {
+                slot.style.display = 'none';
+              }
+            });
+
+            setTimeout(() => {
+              if (!slot.classList.contains('active')) {
+                slot.style.display = 'none';
+                if (!loaded && index === this.adSlots.length - 1) {
+                  this.adContainer.classList.add('no-ads');
+                }
+              }
+            }, 5000);
           }
         });
       }
@@ -900,6 +835,13 @@
         const lowercase = this.lowercaseCheckbox.checked;
         const numbers = this.numbersCheckbox.checked;
         const symbols = this.symbolsCheckbox.checked;
+
+        if (!uppercase && !lowercase && !numbers && !symbols) {
+          this.passwordOutput.textContent = 'Select at least one character type';
+          this.showToast('Please select at least one character type!', 'error');
+          this.updateStrengthMeter(0);
+          return;
+        }
 
         let chars = '';
         if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -936,62 +878,84 @@
       }
 
       copyToClipboard(password = this.passwordOutput.textContent) {
+        if (password === 'Generated password will appear here' || password === 'Select at least one character type') {
+          this.showToast('No password to copy!', 'error');
+          return;
+        }
         navigator.clipboard.writeText(password).then(() => {
-          this.showToast('Copied to clipboard!');
+          this.showToast('Copied to clipboard!', 'success');
+        }).catch(() => {
+          this.showToast('Failed to copy!', 'error');
         });
       }
 
       openSaveModal() {
+        if (this.passwordOutput.textContent === 'Generated password will appear here' || 
+            this.passwordOutput.textContent === 'Select at least one character type') {
+          this.showToast('Generate a password first!', 'error');
+          return;
+        }
         this.saveModal.classList.add('active');
       }
 
       closeSaveModal() {
         this.saveModal.classList.remove('active');
+        this.passwordLabel.value = '';
       }
 
       savePassword() {
-        const label = this.passwordLabel.value;
+        const label = this.passwordLabel.value.trim();
         const password = this.passwordOutput.textContent;
+        if (!label) {
+          this.showToast('Please enter a label!', 'error');
+          return;
+        }
         this.savedPasswords.push({ label, password });
         localStorage.setItem('savedPasswords', JSON.stringify(this.savedPasswords));
         this.renderSavedPasswords();
         this.closeSaveModal();
+        this.showToast('Password saved!', 'success');
       }
 
       renderSavedPasswords() {
-        this.savedPasswordsList.innerHTML = this.savedPasswords.map((p, index) => `
+        this.savedPasswordsList.innerHTML = this.savedPasswords.length ? this.savedPasswords.map((p, index) => `
           <div class="password-item">
             <div class="password-info">
               <div class="password-value">${p.password}</div>
               <div class="password-meta">${p.label}</div>
             </div>
             <div class="password-actions">
-              <button class="btn-small btn-copy" data-password="${p.password}">Copy</button>
-              <button class="btn-small btn-delete" data-id="${index}">Delete</button>
+              <button class="btn-small btn-copy" data-password="${p.password}" aria-label="Copy saved password">Copy</button>
+              <button class="btn-small btn-delete" data-id="${index}" aria-label="Delete saved password">Delete</button>
             </div>
           </div>
-        `).join('');
+        `).join('') : '<div class="empty-state">No saved passwords</div>';
       }
 
       deleteSavedPassword(id) {
         this.savedPasswords.splice(id, 1);
         localStorage.setItem('savedPasswords', JSON.stringify(this.savedPasswords));
         this.renderSavedPasswords();
+        this.showToast('Password deleted!', 'success');
       }
 
       copyAllPasswords() {
+        if (!this.savedPasswords.length) {
+          this.showToast('No saved passwords to copy!', 'error');
+          return;
+        }
         const all = this.savedPasswords.map(p => p.password).join('\n');
         this.copyToClipboard(all);
       }
 
-      showToast(message) {
+      showToast(message, type = 'success') {
         this.toast.textContent = message;
-        this.toast.classList.add('show');
+        this.toast.className = `toast show ${type}`;
         setTimeout(() => this.toast.classList.remove('show'), 3000);
       }
     }
 
-    new PasswordGenerator();
+    document.addEventListener('DOMContentLoaded', () => new PasswordGenerator());
   </script>
 </body>
 </html>
