@@ -97,17 +97,13 @@
       margin: 20px auto;
       max-width: 728px;
       text-align: center;
-      min-height: 90px;
+      min-height: 50px;
       position: relative;
       overflow: hidden;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       background: #f8f9fa;
-      display: none; /* Hidden by default until an ad loads */
-    }
-
-    .ad-container.active {
-      display: block; /* Show when an ad is successfully loaded */
+      display: block;
     }
 
     .ad-container .ad-slot {
@@ -543,7 +539,7 @@
       .password-actions { width: 100%; justify-content: flex-end; }
       .section-title { font-size: 20px; }
       .saved-title { font-size: 18px; }
-      .ad-container { max-width: 100%; padding: 10px; }
+      .ad-container { max-width: 300px; min-height: 50px; }
     }
 
     @media (max-width: 480px) {
@@ -552,7 +548,7 @@
       .header h1 { font-size: 20px; flex-direction: column; gap: 5px; }
       .header p { font-size: 14px; }
       .password-text { font-size: 14px; }
-      .ad-container { max-width: 100%; height: auto; }
+      .ad-container { max-width: 320px; min-height: 50px; }
     }
 
     .sr-only {
@@ -593,6 +589,7 @@
     </header>
 
     <div class="ad-container" id="adContainer" role="region" aria-label="Advertisement">
+      <!-- Desktop ad: 728x90 -->
       <div id="ad1" class="ad-slot">
         <script async type="text/javascript">
           atOptions = {
@@ -605,6 +602,7 @@
         </script>
         <script async type="text/javascript" src="//www.highperformanceformat.com/63718988f07bc6d276f3c6a441757cae/invoke.js"></script>
       </div>
+      <!-- Medium ad: 300x250 -->
       <div id="ad2" class="ad-slot">
         <script async type="text/javascript">
           atOptions = {
@@ -617,6 +615,7 @@
         </script>
         <script async type="text/javascript" src="//www.highperformanceformat.com/c620af328467e6de19dc04af696ee0fb/invoke.js"></script>
       </div>
+      <!-- Mobile ad: 320x50 -->
       <div id="ad3" class="ad-slot">
         <script async type="text/javascript">
           atOptions = {
@@ -791,40 +790,59 @@
 
       initializeAds() {
         const adSizes = [
-          { width: 728, height: 90 },
-          { width: 300, height: 250 },
-          { width: 320, height: 50 }
+          { id: 'ad1', width: 728, height: 90, minViewport: 768 }, // Desktop
+          { id: 'ad2', width: 300, height: 250, minViewport: 480 }, // Medium
+          { id: 'ad3', width: 320, height: 50, minViewport: 0 } // Mobile
         ];
 
-        let loaded = false;
-        this.adSlots.forEach((slot, index) => {
-          const iframe = slot.querySelector('iframe');
-          if (iframe) {
-            iframe.addEventListener('load', () => {
-              try {
-                const content = iframe.contentWindow.document.body.innerHTML;
-                if (content && !loaded) {
-                  slot.classList.add('active');
-                  this.adContainer.classList.add('active');
-                  this.adContainer.style.width = `${adSizes[index].width}px`;
-                  this.adContainer.style.height = `${adSizes[index].height}px`;
-                  loaded = true;
-                } else {
-                  slot.style.display = 'none';
-                }
-              } catch (e) {
-                slot.style.display = 'none';
-              }
-            });
+        // Select ad slot based on viewport width
+        const viewportWidth = window.innerWidth;
+        const selectedAd = adSizes.find(ad => viewportWidth >= ad.minViewport) || adSizes[adSizes.length - 1];
 
-            setTimeout(() => {
-              if (!slot.classList.contains('active')) {
-                slot.style.display = 'none';
-                if (!loaded && index === this.adSlots.length - 1) {
-                  this.adContainer.classList.add('no-ads');
-                }
-              }
-            }, 5000);
+        // Hide all ad slots initially
+        this.adSlots.forEach(slot => slot.style.display = 'none');
+
+        // Show the selected ad slot
+        const selectedSlot = this.adContainer.querySelector(`#${selectedAd.id}`);
+        selectedSlot.style.display = 'block';
+        this.adContainer.style.width = `${selectedAd.width}px`;
+        this.adContainer.style.height = `${selectedAd.height}px`;
+
+        // Check if ad loads successfully
+        const iframe = selectedSlot.querySelector('iframe');
+        let adLoaded = false;
+
+        if (iframe) {
+          // Use MutationObserver to detect changes in the iframe
+          const observer = new MutationObserver(() => {
+            if (iframe.offsetHeight > 0 || iframe.offsetWidth > 0) {
+              adLoaded = true;
+              selectedSlot.classList.add('active');
+              this.adContainer.classList.add('active');
+              observer.disconnect();
+            }
+          });
+
+          observer.observe(iframe, { attributes: true, childList: true, subtree: true });
+
+          // Fallback after 7 seconds if no ad loads
+          setTimeout(() => {
+            if (!adLoaded) {
+              selectedSlot.style.display = 'none';
+              this.adContainer.classList.add('no-ads');
+            }
+          }, 7000);
+        } else {
+          // No iframe found, show fallback immediately
+          this.adContainer.classList.add('no-ads');
+        }
+
+        // Update ad slot on window resize
+        window.addEventListener('resize', () => {
+          const newViewportWidth = window.innerWidth;
+          const newSelectedAd = adSizes.find(ad => newViewportWidth >= ad.minViewport) || adSizes[adSizes.length - 1];
+          if (newSelectedAd.id !== selectedAd.id) {
+            window.location.reload();
           }
         });
       }
